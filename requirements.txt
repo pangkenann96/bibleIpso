@@ -1,0 +1,10 @@
+pandas
+sqlalchemy
+chromadb
+tqdm
+streamlit
+PyPDF2
+WordCloud
+matplotlib
+faker
+tabulate
