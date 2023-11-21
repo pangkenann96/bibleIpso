@@ -34,7 +34,7 @@ def main():
     def search_bible():
         st.title("Ask.")
         
-        keyword = st.text_input("Search:")
+        keyword = st.text_input("Search:", key=1)
 
         if keyword:
             filtered_df = keyword_filter_dataframe(df_bible, "Text_NET", keyword)
@@ -45,6 +45,30 @@ def main():
             if st.button('Generate WordCloud'):
                 # Call the generate_wordcloud function with the desired data
                 generate_wordcloud(' '.join(filtered_df['Text_NET'].dropna().astype(str)))
+            
+            keyword = st.text_input("Search:", key=2)
+
+            if keyword:
+                filtered_df = keyword_filter_dataframe(df_bible, "Text_NET", keyword)
+                st.write(len(filtered_df))
+                st.dataframe(df_read_bible(filtered_df))
+
+                # Add a button to generate the WordCloud
+                if st.button('Generate WordCloud'):
+                    # Call the generate_wordcloud function with the desired data
+                    generate_wordcloud(' '.join(filtered_df['Text_NET'].dropna().astype(str)))
+                
+                # WIP: identical issue
+                # keyword = st.text_input("Search:", key=3)
+                # if keyword:
+                #     filtered_df = keyword_filter_dataframe(df_bible, "Text_NET", keyword)
+                #     st.write(len(filtered_df))
+                #     st.dataframe(df_read_bible(filtered_df))
+
+                #     # Add a button to generate the WordCloud
+                #     if st.button('Generate WordCloud'):
+                #         # Call the generate_wordcloud function with the desired data
+                #         generate_wordcloud(' '.join(filtered_df['Text_NET'].dropna().astype(str)))
 
     pages = {
         "Read Bible": read_bible_page,
